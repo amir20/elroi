@@ -227,7 +227,8 @@
     }
 
 
-})(jQuery);(function(elroi, $) {
+})(jQuery);
+(function(elroi, $) {
 
     /**
      *
@@ -1603,10 +1604,10 @@
          * Animation pie from initial radius of 1 to full value.  May eventually provide this as a callback instead.
          * @param [ms] {number} The duration of tha Raphael animation
          */
-        function loadAnimation(ms) {
+        function loadAnimation(ms,callback) {
             wedges.animate({radius: radius,
                     transform: [S11+CENTER_COORDINATES+'r'+ defaultRotation +','+CENTER_COORDINATES]},
-                ms || 1500, 'backOut');
+                ms || 1500, 'backOut', callback);
 
         }
 
@@ -1790,7 +1791,7 @@
             }
 
             if(graph.options.animation) {
-                loadAnimation(1000);
+                loadAnimation(1000, graph.options.pie.loadAnimationCallback);
             }
 
             generateMessageBoxSet();
@@ -2001,7 +2002,8 @@
 
     elroi.fn.pie = pie;
 
-})(elroi, jQuery);(function(elroi, $) {
+})(elroi, jQuery);
+(function(elroi, $) {
 
     /**
      * Draws a stacked bar graph for a given data series
